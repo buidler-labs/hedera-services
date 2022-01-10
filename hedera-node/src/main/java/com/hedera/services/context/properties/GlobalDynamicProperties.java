@@ -87,6 +87,8 @@ public class GlobalDynamicProperties {
 	private ThrottleReqOpsScaleFactor nftMintScaleFactor;
 	private String upgradeArtifactsLoc;
 	private long triggerTxnWindBackNanos;
+	private int changeHistorianMemorySecs;
+	private boolean autoCreationEnabled;
 
 	@Inject
 	public GlobalDynamicProperties(
@@ -156,6 +158,8 @@ public class GlobalDynamicProperties {
 		nftMintScaleFactor = properties.getThrottleScaleFactor("tokens.nfts.mintThrottleScaleFactor");
 		upgradeArtifactsLoc = properties.getStringProperty("upgrade.artifacts.path");
 		triggerTxnWindBackNanos = properties.getLongProperty("scheduling.triggerTxn.windBackNanos");
+		changeHistorianMemorySecs = properties.getIntProperty("ledger.changeHistorian.memorySecs");
+		autoCreationEnabled = properties.getBooleanProperty("autoCreation.enabled");
 	}
 
 	public int maxTokensPerAccount() {
@@ -348,5 +352,13 @@ public class GlobalDynamicProperties {
 
 	public long triggerTxnWindBackNanos() {
 		return triggerTxnWindBackNanos;
+	}
+
+	public int changeHistorianMemorySecs() {
+		return changeHistorianMemorySecs;
+	}
+
+	public boolean isAutoCreationEnabled() {
+		return autoCreationEnabled;
 	}
 }
